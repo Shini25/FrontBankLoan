@@ -1,0 +1,21 @@
+<form [formGroup]="guaranteeForm" (ngSubmit)="addGuarantee()">
+  <div class="form-group">
+    <label for="loanId">Loan</label>
+    <select id="loanId" formControlName="loanid" class="form-control" required>
+      <option *ngFor="let loan of loans" [value]="loan.loanid">{{loan.loanid}}</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="guaranteeType">Guarantee Type</label>
+    <input type="text" id="guaranteeType" formControlName="guaranteetype" class="form-control" required>
+  </div>
+  <div class="form-group">
+    <label for="estimatedValue">Estimated Value</label>
+    <input type="number" id="estimatedValue" formControlName="estimatedvalue" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="description">Description</label>
+    <input type="text" id="description" formControlName="description" class="form-control" required>
+  </div>
+  <button type="submit" class="btn btn-primary" [disabled]="!guaranteeForm.valid">Submit</button>
+</form>

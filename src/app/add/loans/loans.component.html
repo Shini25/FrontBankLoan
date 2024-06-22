@@ -1,0 +1,34 @@
+<p>loans works!</p>
+<form [formGroup]="loanForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="clientId">Client</label>
+      <select id="clientId" formControlName="clientid" class="form-control" required>
+        <option *ngFor="let client of clients" [value]="client.clientid">{{client.firstname}} {{client.lastname}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="amount">Amount</label>
+      <input type="number" id="amount" formControlName="amount" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="interestRate">Interest Rate (%)</label>
+      <input type="number" id="interestRate" formControlName="interestrate" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="durationMonths">Duration (Months)</label>
+      <input type="number" id="durationMonths" formControlName="durationmonths" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="startDate">Start Date</label>
+      <input type="date" id="startDate" formControlName="startdate" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="loanType">Loan Type</label>
+      <input type="text" id="loanType" formControlName="loantype" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="status">Status</label>
+      <input type="text" id="status" formControlName="status" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="!loanForm.valid">Submit</button>
+  </form>
