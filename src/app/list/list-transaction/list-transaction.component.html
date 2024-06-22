@@ -1,0 +1,43 @@
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  
+      <!-- Transaction ID Column -->
+      <ng-container matColumnDef="transactionid">
+        <th mat-header-cell *matHeaderCellDef> Transaction ID </th>
+        <td mat-cell *matCellDef="let element"> {{element.transactionid}} </td>
+      </ng-container>
+  
+      <!-- Client ID Column -->
+      <ng-container matColumnDef="clientid">
+        <th mat-header-cell *matHeaderCellDef> Client ID </th>
+        <td mat-cell *matCellDef="let element"> {{element.clientid}} </td>
+      </ng-container>
+  
+      <!-- Loan ID Column -->
+      <ng-container matColumnDef="loanid">
+        <th mat-header-cell *matHeaderCellDef> Loan ID </th>
+        <td mat-cell *matCellDef="let element"> {{element.loanid}} </td>
+      </ng-container>
+  
+      <!-- Amount Column -->
+      <ng-container matColumnDef="amount">
+        <th mat-header-cell *matHeaderCellDef> Amount </th>
+        <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+      </ng-container>
+  
+      <!-- Transaction Date Column -->
+      <ng-container matColumnDef="transactiondate">
+        <th mat-header-cell *matHeaderCellDef> Date </th>
+        <td mat-cell *matCellDef="let element"> {{element.transactiondate | date}} </td>
+      </ng-container>
+  
+      <!-- Transaction Type Column -->
+      <ng-container matColumnDef="transactiontype">
+        <th mat-header-cell *matHeaderCellDef> Type </th>
+        <td mat-cell *matCellDef="let element"> {{element.transactiontype}} </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>

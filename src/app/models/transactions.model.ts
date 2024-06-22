@@ -6,6 +6,6 @@ export interface Transactions {
     clientid: Clients;
     loanid: Loans;
     amount: number;
-    date: Date;
-    type: string;
+    transactiondate: Date;
+    transactiontype: string;
 }
