@@ -35,4 +35,16 @@ export class ClientsService {
   deleteClient(id: number): Observable<{}> {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }
+
+  // Rechercher des clients par prénom ou nom de famille
+  searchClientsByFirstNameOrLastName(firstname?: string, lastname?: string): Observable<Clients[]> {
+    let query = `${this.apiUrl}/search?`;
+    if (firstname) {
+      query += `firstname=${firstname}&`;
+    }
+    if (lastname) {
+      query += `lastname=${lastname}`;
+    }
+    return this.http.get<Clients[]>(query);
+  }
 }
