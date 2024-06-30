@@ -1,0 +1,119 @@
+.login-card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 50%;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .account-text {
+    color: white;
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+  
+  mat-card-title {
+    font-size: 1.5rem;
+    color: white;
+    width: 100%;
+  }
+  
+  mat-form-field {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  mat-form-field input {
+    color: white;
+  }
+  
+  button {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+  }
+  
+  .additional-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  h2 {
+    text-align: center;
+    color: rgba(109, 109, 109, 0.829);
+    font-size: 2.6em;
+  }
+  mat-checkbox {
+    color: white;
+  }
+
+  .wide-button {
+    width: 100%;
+  }
+  
+  .forgot-password {
+    color: white;
+    text-decoration: none;
+    
+  }
+  
+  .forgot-password:hover {
+    text-decoration: underline;
+  }
+
+  .create-account-button {
+    color: green;
+  }
+
+  mat-card-actions {
+    width: 60%;
+  }
+
+p span {
+  color: white;
+}
+
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.typewriter {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typewriter 8s steps(40, end) infinite;
+  width: 0; /* Start with no width */
+  position: relative; /* Needed for the pseudo-element */
+}
+
+
+
+span.cursor {
+  display: inline-block;
+  width: 0.5em;
+  height: 0.5em;
+  background-color: rgb(159, 2, 170); /* Cursor color */
+  border-radius: 50%; /* Make it a circle */
+  position:relative;
+  bottom: 0.2em;
+  left: 0.5em;
+  animation: blink 0.75s step-end infinite;
+}

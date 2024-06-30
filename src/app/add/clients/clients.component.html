@@ -1,32 +1,61 @@
-<p>clients works!</p>
-<form [formGroup]="clientForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="firstname">First Name</label>
-      <input type="text" id="firstname" formControlName="firstname" class="form-control" required>
-    </div>
-    <div class="form-group">
-      <label for="lastname">Last Name</label>
-      <input type="text" id="lastname" formControlName="lastname" class="form-control" required>
-    </div>
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input type="email" id="email" formControlName="email" class="form-control" required>
-    </div>
-    <div class="form-group">
-      <label for="phone">Phone</label>
-      <input type="text" id="phone" formControlName="phone" class="form-control" required>
-    </div>
-    <div class="form-group">
-      <label for="address">Address</label>
-      <input type="text" id="address" formControlName="address" class="form-control" required>
-    </div>
-    <div class="form-group">
-      <label for="birthdate">Birth Date</label>
-      <input type="date" id="birthdate" formControlName="birthdate" class="form-control" required>
-    </div>
-    <div class="form-group">
-      <label for="balance">Balance</label>
-      <input type="number" id="balance" formControlName="balance" class="form-control" required>
-    </div>
-    <button type="submit" class="btn btn-primary" [disabled]="!clientForm.valid">Submit</button>
-  </form>
+<div class="container">
+  <div class="form-container">
+    <h1 class="form-title">
+      <mat-icon>person_add</mat-icon>
+      Add Client
+    </h1>
+    <form [formGroup]="clientForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label><mat-icon>person</mat-icon> First Name</mat-label>
+          <input matInput type="text" formControlName="firstname" required>
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label><mat-icon>person</mat-icon> Last Name</mat-label>
+          <input matInput type="text" formControlName="lastname" required>
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label><mat-icon>email</mat-icon> Email</mat-label>
+          <input matInput type="email" formControlName="email" required>
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label><mat-icon>phone</mat-icon> Phone</mat-label>
+          <input matInput type="text" formControlName="phone" required>
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label><mat-icon>home</mat-icon> Address</mat-label>
+          <input matInput type="text" formControlName="address" required>
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label><mat-icon>calendar_today</mat-icon> Birth Date</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="birthdate" required>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label><mat-icon>account_balance_wallet</mat-icon> Balance</mat-label>
+          <input matInput type="number" formControlName="balance" required>
+        </mat-form-field>
+      </div>
+      <div *ngIf="isLoading" class="spinner-container">
+        <mat-spinner></mat-spinner>
+      </div>
+      <div class="button-group">
+        <button mat-raised-button color="primary" type="submit" [disabled]="!clientForm.valid || isLoading">Submit</button>
+        <button mat-raised-button color="warn" type="button" (click)="onClear()">Clear All</button>
+      </div>
+    </form>
+  </div>
+</div>

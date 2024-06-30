@@ -1,0 +1,37 @@
+<h2>
+  <span class="typewriter">All users must authenticate to access the functionality</span>
+  <span class="cursor"></span>
+</h2>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <mat-card class="login-card">
+    <mat-card-title class="mb-5">Login</mat-card-title>
+    <mat-card-content>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Username</mat-label>
+        <mat-icon matPrefix>person</mat-icon>
+        <input matInput formControlName="username" placeholder="Enter your username">
+        <mat-error *ngIf="loginForm.get('username')?.hasError('required')">
+          Username is required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Password</mat-label>
+        <mat-icon matPrefix>lock</mat-icon>
+        <input matInput type="password" formControlName="password">
+        <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+          Password is required
+        </mat-error>
+        <mat-error *ngIf="loginForm.get('password')?.hasError('minlength')">
+          Password must be at least 8 characters long
+        </mat-error>
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit" class="login-button mb-5" style="width: 100%;">Login</button>
+    </mat-card-actions>
+    <a href="#" class="forgot-password">Forgot password?</a>
+    <div class="additional-options">
+      <p><span>Don't have account? </span><a class="create-account-button" [routerLink]="['/register']">Create new account</a></p>
+    </div>
+  </mat-card>
+</form>

@@ -1,43 +1,102 @@
-<div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-  
-      <!-- Transaction ID Column -->
-      <ng-container matColumnDef="transactionid">
-        <th mat-header-cell *matHeaderCellDef> Transaction ID </th>
-        <td mat-cell *matCellDef="let element"> {{element.transactionid}} </td>
-      </ng-container>
-  
-      <!-- Client ID Column -->
-      <ng-container matColumnDef="clientid">
-        <th mat-header-cell *matHeaderCellDef> Client ID </th>
-        <td mat-cell *matCellDef="let element"> {{element.clientid}} </td>
-      </ng-container>
-  
-      <!-- Loan ID Column -->
-      <ng-container matColumnDef="loanid">
-        <th mat-header-cell *matHeaderCellDef> Loan ID </th>
-        <td mat-cell *matCellDef="let element"> {{element.loanid}} </td>
-      </ng-container>
-  
-      <!-- Amount Column -->
-      <ng-container matColumnDef="amount">
-        <th mat-header-cell *matHeaderCellDef> Amount </th>
-        <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
-      </ng-container>
-  
-      <!-- Transaction Date Column -->
-      <ng-container matColumnDef="transactiondate">
-        <th mat-header-cell *matHeaderCellDef> Date </th>
-        <td mat-cell *matCellDef="let element"> {{element.transactiondate | date}} </td>
-      </ng-container>
-  
-      <!-- Transaction Type Column -->
-      <ng-container matColumnDef="transactiontype">
-        <th mat-header-cell *matHeaderCellDef> Type </th>
-        <td mat-cell *matCellDef="let element"> {{element.transactiontype}} </td>
-      </ng-container>
-  
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
+
+<div class="header-container">
+  <h1 class="title">Transaction List</h1>
+  <div class="search-container col-8">
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-label>Search by Transaction ID</mat-label>
+      <mat-icon matPrefix>search</mat-icon>
+      <input matInput [(ngModel)]="searchText" (ngModelChange)="onSearchTextChange()" />
+      <button mat-icon-button matSuffix (click)="searchText=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
   </div>
+</div>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!-- Transaction ID Column -->
+    <ng-container matColumnDef="transactionid">
+      <th mat-header-cell *matHeaderCellDef>
+        <div class="header-content">
+          <mat-icon>badge</mat-icon>
+          <span>Transaction ID</span>
+        </div>
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.transactionid}} </td>
+    </ng-container>
+
+    <!-- Loan ID Column -->
+    <ng-container matColumnDef="loanid">
+      <th mat-header-cell *matHeaderCellDef>
+        <div class="header-content">
+          <mat-icon>account_balance</mat-icon>
+          <span>Loan ID</span>
+        </div>
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.loanid}} </td>
+    </ng-container>
+
+    <!-- Amount Column -->
+    <ng-container matColumnDef="amount">
+      <th mat-header-cell *matHeaderCellDef>
+        <div class="header-content">
+          <mat-icon>attach_money</mat-icon>
+          <span>Amount</span>
+        </div>
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+    </ng-container>
+
+    <!-- Transaction Date Column -->
+    <ng-container matColumnDef="transactiondate">
+      <th mat-header-cell *matHeaderCellDef>
+        <div class="header-content">
+          <mat-icon>calendar_today</mat-icon>
+          <span>Date</span>
+        </div>
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.transactiondate | date}} </td>
+    </ng-container>
+
+    <!-- Transaction Type Column -->
+    <ng-container matColumnDef="transactiontype">
+      <th mat-header-cell *matHeaderCellDef>
+        <div class="header-content">
+          <mat-icon>category</mat-icon>
+          <span>Type</span>
+        </div>
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.transactiontype}} </td>
+    </ng-container>
+
+    <!-- Client First Name Column -->
+    <ng-container matColumnDef="client_firstname">
+      <th mat-header-cell *matHeaderCellDef>
+        <div class="header-content">
+          <mat-icon>person</mat-icon>
+          <span>Client First Name</span>
+        </div>
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.client_firstname}} </td>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>
+        <div class="header-content">
+          <mat-icon>settings</mat-icon>
+          <span>Actions</span>
+        </div>
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-button (click)="openUpdateDialog(element)">Update</button>
+        <button mat-button color="warn" (click)="openDeleteDialog(element.transactionid)">Delete</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

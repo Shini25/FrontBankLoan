@@ -1,37 +1,90 @@
-<div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-  
-      <!-- Guarantee ID Column -->
-      <ng-container matColumnDef="guaranteeid">
-        <th mat-header-cell *matHeaderCellDef> Guarantee ID </th>
-        <td mat-cell *matCellDef="let element"> {{element.guaranteeid}} </td>
-      </ng-container>
-  
-      <!-- Loan ID Column -->
-      <ng-container matColumnDef="loanid">
-        <th mat-header-cell *matHeaderCellDef> Loan ID </th>
-        <td mat-cell *matCellDef="let element"> {{element.loanid}} </td>
-      </ng-container>
-  
-      <!-- Guarantee Type Column -->
-      <ng-container matColumnDef="guaranteetype">
-        <th mat-header-cell *matHeaderCellDef> Type </th>
-        <td mat-cell *matCellDef="let element"> {{element.guaranteetype}} </td>
-      </ng-container>
-  
-      <!-- Estimated Value Column -->
-      <ng-container matColumnDef="estimatedvalue">
-        <th mat-header-cell *matHeaderCellDef> Estimated Value </th>
-        <td mat-cell *matCellDef="let element"> {{element.estimatedvalue}} </td>
-      </ng-container>
-  
-      <!-- Description Column -->
-      <ng-container matColumnDef="description">
-        <th mat-header-cell *matHeaderCellDef> Description </th>
-        <td mat-cell *matCellDef="let element"> {{element.description}} </td>
-      </ng-container>
-  
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
+<div class="header-container">
+  <h1 class="title">Guarantee List</h1>
+  <div class="search-container col-8">
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-label>Search by Guarantee Type</mat-label>
+      <mat-icon matPrefix>search</mat-icon>
+      <input matInput [(ngModel)]="searchText" (ngModelChange)="onSearchTextChange()" />
+      <button mat-icon-button matSuffix (click)="searchText=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
   </div>
+</div>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!-- Guarantee ID Column -->
+    <ng-container matColumnDef="guaranteeid">
+      <th mat-header-cell *matHeaderCellDef>
+        <div class="header-content">
+          <mat-icon>badge</mat-icon>
+          <span style="color: #000000;">Guarantee ID</span>
+        </div>
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.guaranteeid}} </td>
+    </ng-container>
+
+    <!-- Client Name Column -->
+    <ng-container matColumnDef="clientname">
+      <th mat-header-cell *matHeaderCellDef>
+        <div class="header-content">
+          <mat-icon>person</mat-icon>
+          <span style="color: #000000;">loan id</span>
+        </div>
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.loanid}} </td>
+    </ng-container>
+
+    <!-- Guarantee Type Column -->
+    <ng-container matColumnDef="guaranteetype">
+      <th mat-header-cell *matHeaderCellDef>
+        <div class="header-content">
+          <mat-icon>category</mat-icon>
+          <span style="color: #000000;">Type</span>
+        </div>
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.guaranteetype}} </td>
+    </ng-container>
+
+    <!-- Estimated Value Column -->
+    <ng-container matColumnDef="estimatedvalue">
+      <th mat-header-cell *matHeaderCellDef>
+        <div class="header-content">
+          <mat-icon>attach_money</mat-icon>
+          <span style="color: #000000;">Estimated Value</span>
+        </div>
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.estimatedvalue}} </td>
+    </ng-container>
+
+    <!-- Description Column -->
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef>
+        <div class="header-content">
+          <mat-icon>description</mat-icon>
+          <span style="color: #000000;">Description</span>
+        </div>
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>
+        <div class="header-content">
+          <mat-icon>settings</mat-icon>
+          <span style="color: #000000;">Actions</span>
+        </div>
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-button color="primary" (click)="openUpdateDialog(element)">Update</button>
+        <button mat-button color="warn" (click)="openDeleteDialog(element.guaranteeid)">Delete</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

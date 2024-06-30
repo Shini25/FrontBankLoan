@@ -3,7 +3,7 @@ import { Loans } from "./loans.model";
 export interface Guarantees {
 
     guaranteeid: number;
-    loanid: Loans;
+    loanid: number;
     guaranteetype: string;
     estimatedvalue?: number;
     description: string;

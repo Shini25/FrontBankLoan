@@ -1,1 +1,69 @@
-<router-outlet />
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav mode="side" opened class="sidenav ">
+      <div class="logo-section mb-4">
+        <img src="commission_7028100.png" alt="Logo" class="img-fluid logo-img">
+        <span class="text-white ml-2">loan</span>
+      </div>
+      <mat-nav-list>
+        <mat-list-item class="home mb-2" [routerLink]="['/home']">
+          <mat-icon class="white-icon">home</mat-icon>
+          <span class="icon-text">Home</span>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <h6>Services</h6>
+        <mat-list-item [routerLink]="['/add-client']">
+          <mat-icon class="white-icon">attach_money</mat-icon> <!-- Changed icon -->
+          <span class="icon-text">loan</span>
+        </mat-list-item>
+        <mat-list-item  [routerLink]="['/add-transaction']">
+          <mat-icon class="white-icon">swap_horiz</mat-icon> <!-- Changed icon -->
+          <span class="icon-text">transaction</span>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <h6>list</h6>
+        <mat-list-item [routerLink]="['/list-client']">
+          <mat-icon class="white-icon">people</mat-icon> <!-- Changed icon -->
+          <span class="icon-text">clients</span>
+        </mat-list-item>
+        <mat-list-item [routerLink]="['/list-loan']">
+          <mat-icon class="white-icon" matBadge="{{ pendingLoansCount }}" matBadgeColor="warn">assignment</mat-icon>
+          <span class="icon-text">loans</span>
+        </mat-list-item>
+        <mat-list-item [routerLink]="['/list-guarantee']">
+          <mat-icon class="white-icon">security</mat-icon> <!-- Changed icon -->
+          <span class="icon-text">guarantees</span>
+        </mat-list-item>
+        <mat-list-item [routerLink]="['/list-transaction']">
+          <mat-icon class="white-icon">swap_horiz</mat-icon> <!-- Changed icon -->
+          <span class="icon-text" >transaction</span>
+        </mat-list-item>
+        <mat-list-item [routerLink]="['/list-employee']">
+          <mat-icon class="white-icon">person</mat-icon>
+          <span class="icon-text">employee</span>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+          <mat-icon class="white-icon">admin_panel_settings</mat-icon> <!-- Changed icon -->
+          <span class="icon-text">Admin</span>
+        </mat-list-item>
+  
+      </mat-nav-list>
+      <div class="user-section mt-4">
+          <button *ngIf="isLoggedIn()" mat-icon-button class="user-button logout-button" (click)="logout()">
+            <mat-icon>logout</mat-icon>
+          </button>
+          <div *ngIf="!isLoggedIn()" class="sign-in-container">
+            <p class="sign-in-text">You need to be connected</p>
+            <button mat-raised-button color="primary" class="sign-in-button" [routerLink]="['/login']">
+                Sign In
+            </button>
+          </div>
+      </div>
+      
+    </mat-sidenav>
+    <mat-sidenav-content class="custom-sidenav-content">
+        <router-outlet />
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+
+  

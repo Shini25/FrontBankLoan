@@ -1,34 +1,59 @@
-<p>loans works!</p>
 <form [formGroup]="loanForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="clientId">Client</label>
-      <select id="clientId" formControlName="clientid" class="form-control" required>
-        <option *ngFor="let client of clients" [value]="client.clientid">{{client.firstname}} {{client.lastname}}</option>
-      </select>
+  <div class="container">
+    <div class="form-container">
+      <h1 class="form-title">
+        <mat-icon>account_balance</mat-icon>
+        Add Loan
+      </h1>
+      <div class="form-group">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label><mat-icon>person</mat-icon> Client</mat-label>
+          <mat-select id="clientId" formControlName="clientid" required>
+            <mat-option *ngFor="let client of clients" [value]="client.clientid">
+              {{client.firstname}} {{client.lastname}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label><mat-icon>attach_money</mat-icon> Amount</mat-label>
+          <input matInput type="number" id="amount" formControlName="amount" required>
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label><mat-icon>schedule</mat-icon> Duration (Months)</mat-label>
+          <input matInput type="number" id="durationMonths" formControlName="durationmonths" required>
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label><mat-icon>event</mat-icon> Start Date</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="startdate" required>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label><mat-icon>category</mat-icon> Loan Type</mat-label>
+          <mat-select id="loanType" formControlName="loantype" required>
+            <mat-option value="Personal Loan">Personal Loan</mat-option>
+            <mat-option value="Mortgage">Mortgage</mat-option>
+            <mat-option value="Auto Loan">Auto Loan</mat-option>
+            <mat-option value="Student Loan">Student Loan</mat-option>
+            <mat-option value="Business Loan">Business Loan</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="button-group">
+        <button mat-raised-button color="primary" type="submit" [disabled]="!loanForm.valid || isLoading">Submit</button>
+        <button mat-raised-button color="warn" type="button" (click)="onClear()">Clear All</button>
+      </div>
+      <div *ngIf="isLoading" class="spinner-container">
+        <mat-spinner></mat-spinner>
+      </div>
     </div>
-    <div class="form-group">
-      <label for="amount">Amount</label>
-      <input type="number" id="amount" formControlName="amount" class="form-control" required>
-    </div>
-    <div class="form-group">
-      <label for="interestRate">Interest Rate (%)</label>
-      <input type="number" id="interestRate" formControlName="interestrate" class="form-control" required>
-    </div>
-    <div class="form-group">
-      <label for="durationMonths">Duration (Months)</label>
-      <input type="number" id="durationMonths" formControlName="durationmonths" class="form-control" required>
-    </div>
-    <div class="form-group">
-      <label for="startDate">Start Date</label>
-      <input type="date" id="startDate" formControlName="startdate" class="form-control" required>
-    </div>
-    <div class="form-group">
-      <label for="loanType">Loan Type</label>
-      <input type="text" id="loanType" formControlName="loantype" class="form-control" required>
-    </div>
-    <div class="form-group">
-      <label for="status">Status</label>
-      <input type="text" id="status" formControlName="status" class="form-control" required>
-    </div>
-    <button type="submit" class="btn btn-primary" [disabled]="!loanForm.valid">Submit</button>
-  </form>
+  </div>
+</form>

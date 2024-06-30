@@ -1,11 +1,10 @@
-import { Clients } from "./clients.model";
 import { Loans } from "./loans.model";
 
 export interface Transactions {
     transactionid: number;
-    clientid: Clients;
-    loanid: Loans;
+    loanid: number;
     amount: number;
+    client_firstname: string;
     transactiondate: Date;
     transactiontype: string;
 }

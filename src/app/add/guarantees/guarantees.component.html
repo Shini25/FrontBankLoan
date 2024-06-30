@@ -1,21 +1,56 @@
 <form [formGroup]="guaranteeForm" (ngSubmit)="addGuarantee()">
-  <div class="form-group">
-    <label for="loanId">Loan</label>
-    <select id="loanId" formControlName="loanid" class="form-control" required>
-      <option *ngFor="let loan of loans" [value]="loan.loanid">{{loan.loanid}}</option>
-    </select>
+  <div class="container">
+    <div class="form-container">
+      <h1 class="form-title">
+        <mat-icon>security</mat-icon>
+        Add Guarantee
+      </h1>
+      <div class="form-group">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label><mat-icon>assignment</mat-icon> Loan</mat-label>
+          <mat-select id="loanId" formControlName="loanid" required>
+            <mat-option *ngFor="let loan of loans" [value]="loan.loanid">
+              {{loan.client_firstname}} {{loan.client_lastname}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label><mat-icon>category</mat-icon> Guarantee Type</mat-label>
+          <mat-select id="guaranteeType" formControlName="guaranteetype" required>
+            <mat-option value="Real Estate">Real Estate</mat-option>
+            <mat-option value="Movable">Movable</mat-option>
+            <mat-option value="Financial">Financial</mat-option>
+            <mat-option value="Intellectual">Intellectual</mat-option>
+            <mat-option value="Other">Other (specify in description)</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label><mat-icon>attach_money</mat-icon> Estimated Value</mat-label>
+          <input matInput type="number" id="estimatedValue" formControlName="estimatedvalue">
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label><mat-icon>description</mat-icon> Description</mat-label>
+          <input matInput type="text" id="description" formControlName="description" required>
+        </mat-form-field>
+      </div>
+      <div class="button-group">
+        <button mat-raised-button color="primary" type="submit" [disabled]="!guaranteeForm.valid || isLoading">Submit</button>
+        <button mat-raised-button color="warn" type="button" (click)="onClear()">Clear All</button>
+      </div>
+      <div *ngIf="isLoading" class="spinner-container">
+        <mat-spinner></mat-spinner>
+      </div>
+    </div>
   </div>
-  <div class="form-group">
-    <label for="guaranteeType">Guarantee Type</label>
-    <input type="text" id="guaranteeType" formControlName="guaranteetype" class="form-control" required>
-  </div>
-  <div class="form-group">
-    <label for="estimatedValue">Estimated Value</label>
-    <input type="number" id="estimatedValue" formControlName="estimatedvalue" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="description">Description</label>
-    <input type="text" id="description" formControlName="description" class="form-control" required>
-  </div>
-  <button type="submit" class="btn btn-primary" [disabled]="!guaranteeForm.valid">Submit</button>
 </form>
+<div class="fixed-bottom-right">
+  <a mat-raised-button color="primary" [routerLink]="['/services-loan']">
+    <mat-icon>home</mat-icon> Home
+  </a>
+</div>

@@ -1,55 +1,134 @@
-<div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-  
-      <!-- Loan ID Column -->
-      <ng-container matColumnDef="loanid">
-        <th mat-header-cell *matHeaderCellDef> Loan ID </th>
-        <td mat-cell *matCellDef="let element"> {{element.loanid}} </td>
-      </ng-container>
-  
-      <!-- Client ID Column -->
-      <ng-container matColumnDef="clientid">
-        <th mat-header-cell *matHeaderCellDef> Client ID </th>
-        <td mat-cell *matCellDef="let element"> {{element.clientid}} </td>
-      </ng-container>
-  
-      <!-- Amount Column -->
-      <ng-container matColumnDef="amount">
-        <th mat-header-cell *matHeaderCellDef> Amount </th>
-        <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
-      </ng-container>
-  
-      <!-- Interest Rate Column -->
-      <ng-container matColumnDef="interestrate">
-        <th mat-header-cell *matHeaderCellDef> Interest Rate </th>
-        <td mat-cell *matCellDef="let element"> {{element.interestrate}}% </td>
-      </ng-container>
-  
-      <!-- Duration Months Column -->
-      <ng-container matColumnDef="durationmonths">
-        <th mat-header-cell *matHeaderCellDef> Duration (Months) </th>
-        <td mat-cell *matCellDef="let element"> {{element.durationmonths}} </td>
-      </ng-container>
-  
-      <!-- Start Date Column -->
-      <ng-container matColumnDef="startdate">
-        <th mat-header-cell *matHeaderCellDef> Start Date </th>
-        <td mat-cell *matCellDef="let element"> {{element.startdate | date}} </td>
-      </ng-container>
-  
-      <!-- Loan Type Column -->
-      <ng-container matColumnDef="loantype">
-        <th mat-header-cell *matHeaderCellDef> Loan Type </th>
-        <td mat-cell *matCellDef="let element"> {{element.loantype}} </td>
-      </ng-container>
-  
-      <!-- Status Column -->
-      <ng-container matColumnDef="status">
-        <th mat-header-cell *matHeaderCellDef> Status </th>
-        <td mat-cell *matCellDef="let element"> {{element.status}} </td>
-      </ng-container>
-  
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
+<div class="header-container">
+  <h1 class="title">Loan List</h1>
+  <div class="search-container col-8">
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-label>Search by Loan ID</mat-label>
+      <mat-icon matPrefix>search</mat-icon>
+      <input matInput [(ngModel)]="searchText" (ngModelChange)="onSearchTextChange()" />
+      <button mat-icon-button matSuffix (click)="searchText=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
   </div>
+</div>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!-- Loan ID Column -->
+    <ng-container matColumnDef="loanid">
+      <th mat-header-cell *matHeaderCellDef>
+        <div class="header-content">
+          <mat-icon>badge</mat-icon>
+          <span>Loan ID</span>
+        </div>
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.loanid}} </td>
+    </ng-container>
+
+    <!-- Client ID Column -->
+    <ng-container matColumnDef="clientid">
+      <th mat-header-cell *matHeaderCellDef>
+        <div class="header-content">
+          <mat-icon>person</mat-icon>
+          <span>Client ID</span>
+        </div>
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.client_firstname}} {{element.client_lastname}} </td>
+    </ng-container>
+
+    <!-- Amount Column -->
+    <ng-container matColumnDef="amount">
+      <th mat-header-cell *matHeaderCellDef>
+        <div class="header-content">
+          <mat-icon>attach_money</mat-icon>
+          <span>Amount</span>
+        </div>
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+    </ng-container>
+
+    <!-- Interest Rate Column -->
+    <ng-container matColumnDef="interestrate">
+      <th mat-header-cell *matHeaderCellDef>
+        <div class="header-content">
+          <mat-icon>percent</mat-icon>
+          <span>Interest Rate</span>
+        </div>
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.interestrate}} </td>
+    </ng-container>
+
+    <!-- Remaining Amount Column -->
+    <ng-container matColumnDef="remaining_amount">
+      <th mat-header-cell *matHeaderCellDef>
+        <div class="header-content">
+          <mat-icon>account_balance_wallet</mat-icon>
+          <span>Remaining Amount</span>
+        </div>
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.remaining_amount}} </td>
+    </ng-container>
+
+    <!-- Duration Months Column -->
+    <ng-container matColumnDef="durationmonths">
+      <th mat-header-cell *matHeaderCellDef>
+        <div class="header-content">
+          <mat-icon>schedule</mat-icon>
+          <span>Duration (Months)</span>
+        </div>
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.durationmonths}} </td>
+    </ng-container>
+
+    <!-- Start Date Column -->
+    <ng-container matColumnDef="startdate">
+      <th mat-header-cell *matHeaderCellDef>
+        <div class="header-content">
+          <mat-icon>calendar_today</mat-icon>
+          <span>Start Date</span>
+        </div>
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.startdate}} </td>
+    </ng-container>
+
+    <!-- Loan Type Column -->
+    <ng-container matColumnDef="loantype">
+      <th mat-header-cell *matHeaderCellDef>
+        <div class="header-content">
+          <mat-icon>category</mat-icon>
+          <span>Loan Type</span>
+        </div>
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.loantype}} </td>
+    </ng-container>
+
+    <!-- Status Column -->
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef>
+        <div class="header-content">
+          <mat-icon>info</mat-icon>
+          <span>Status</span>
+        </div>
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>
+        <div class="header-content">
+          <mat-icon>settings</mat-icon>
+          <span>Actions</span>
+        </div>
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-button color="primary" (click)="openUpdateDialog(element)">Update</button>
+        <button mat-button color="warn" (click)="openDeleteDialog(element.loanid)">Delete</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

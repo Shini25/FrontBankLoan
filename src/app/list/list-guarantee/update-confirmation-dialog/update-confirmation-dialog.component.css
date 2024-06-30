@@ -1,0 +1,14 @@
+.update-section {
+  display: flex;
+  justify-content: space-between;
+  width: 100%; /* Ajoutez cette ligne pour élargir la section */
+}
+
+.update-column {
+  flex: 1;
+  margin: 0 10px;
+}
+
+.dial {
+    width: 100vw;
+}
